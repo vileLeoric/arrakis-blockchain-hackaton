@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+    <display-name>
+        Servlet engine as a connector for a Restlet component
+    </display-name>
+    <servlet>
+        <servlet-name>it.enuwa.sfdc.routing.APIServerComponent</servlet-name>
+        <servlet-class>
+            org.restlet.ext.servlet.ServerServlet
+        </servlet-class>
+        <init-param>
+            <param-name>org.restlet.component</param-name>
+            <param-value>
+                it.enuwa.sfdc.routing.APIServerComponent
+            </param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>it.enuwa.sfdc.routing.APIServerComponent</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>

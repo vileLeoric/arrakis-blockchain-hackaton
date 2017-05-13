@@ -26,7 +26,7 @@ public class Email {
         Client client = ClientBuilder.newClient();
         client.register(HttpAuthenticationFeature.basic(
                 "api",
-                "key-4b391579158d1d57df9ea94dcbfe6090"
+                "REPLACE WITH YOUR API KEY"
         ));
 
         WebTarget mgRoot = client.target("https://api.mailgun.net/v3");

@@ -1,5 +1,6 @@
 package it.enuwa.sfdc.routing;
 
+import it.enuwa.sfdc.resources.BlockchainResource;
 import it.enuwa.sfdc.resources.SaveOrderResource;
 import org.restlet.Application;
 import org.restlet.Restlet;
@@ -28,6 +29,7 @@ public class APIServerApplication extends Application {
 		APICorsFilter corsFilter = new APICorsFilter();	
 
 		router.attach("/api/0.1/save/",SaveOrderResource.class);
+		router.attach("/api/0.1/timestamp/",BlockchainResource.class);
 		//router.attach("/api/0.1/env/{varname}", EnvironmentResource.class);
 		
 		corsFilter.setNext(router);

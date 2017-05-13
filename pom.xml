@@ -112,6 +112,16 @@
       <artifactId>partner-dev</artifactId>
       <version>1.0</version>
     </dependency>
+      <dependency>
+          <groupId>com.eternitywall</groupId>
+          <artifactId>java-opentimestamps</artifactId>
+          <version>1.11</version>
+      </dependency>
+      <dependency>
+          <groupId>com.amazonaws</groupId>
+          <artifactId>aws-java-sdk</artifactId>
+          <version>1.11.81</version>
+      </dependency>
   </dependencies>
 
   <build>

@@ -1,11 +1,13 @@
 package it.enuwa.sfdc.beans;
 
 /**
- * Created by festini on 3/27/17.
+ * Created by festini on 5/13/17.
  */
-public class Message {
+public class VerifyMessage {
 
     private String message = null;
+    private String file = null;
+
 
     public String getMessage() {
         return message;
@@ -15,4 +17,11 @@ public class Message {
         this.message = message;
     }
 
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
 }

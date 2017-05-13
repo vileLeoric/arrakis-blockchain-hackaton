@@ -3,8 +3,6 @@ package it.enuwa.sfdc.resources;
 import com.eternitywall.ots.OpenTimestamps;
 import it.enuwa.sfdc.beans.Message;
 import it.enuwa.sfdc.utils.BlockchainUtils;
-import it.enuwa.sfdc.utils.Email;
-import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
@@ -12,32 +10,32 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by festini on 5/13/17.
  */
-public class BlockchainResource extends ServerResource{
+public class UpgradeResource extends ServerResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(SaveOrderResource.class);
+    private static final Logger logger = LoggerFactory.getLogger(UpgradeResource.class);
 
     @Post("json")
     public Message save(Message message){
-        logger.info("blockchain resource ---- start");
+        logger.info("upgrade resource ---- start");
+        String hexOts = message.getMessage();
+        byte[] k = DatatypeConverter.parseHexBinary(hexOts);
         byte[] blobOTS;
 
-        try {
-            blobOTS = BlockchainUtils.stamp(message.getMessage());
+        blobOTS = OpenTimestamps.upgrade(k);
+
+        if(Arrays.equals(k, blobOTS)) {
+            return message;
+        }else{
             Message m = new Message();
             m.setMessage(DatatypeConverter.printHexBinary(blobOTS));
-            logger.info("blockchain resource ---- end");
-            return m;
-        } catch (IOException e) {
-            logger.error("IO Exception {}",e);
-            Message m = new Message();
-            m.setMessage("error");
-            logger.info("blockchain resource ---- end");
             return m;
         }
+
     }
 
 }

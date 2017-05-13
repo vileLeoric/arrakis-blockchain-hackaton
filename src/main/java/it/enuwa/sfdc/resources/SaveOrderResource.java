@@ -3,7 +3,6 @@ package it.enuwa.sfdc.resources;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.enuwa.sfdc.beans.CredentialsEntity;
-import it.enuwa.sfdc.beans.MaverickMessage;
 import it.enuwa.sfdc.beans.Message;
 import it.enuwa.sfdc.sfdc.Salesforce;
 import it.enuwa.sfdc.utils.DatabaseManager;
@@ -48,21 +47,6 @@ public class SaveOrderResource extends ServerResource{
             return null;
         }
         return out;
-    }
-
-
-    public static String retrievePayloadFromMessage(String payload) throws IOException {
-
-        ObjectMapper om = new ObjectMapper();
-        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-        MaverickMessage mm = om.readValue(payload, MaverickMessage.class);
-
-        if(mm.getType().equals("Notification"))
-            return mm.getMessage();
-        else
-            return null;
-
     }
 
 
